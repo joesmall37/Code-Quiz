@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="styles.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <title>Quiz App</title>
+</head>
+
+<body>
+    <!-- <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-button" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div> -->
+        <button id="start">Start</button>
+        <div class="questions">
+            <div class="hidden">
+                <div>
+                    <h3>Of the following, which programming language was most popular in 2020 among software developers?</h3>
+                    <p>Question 1</p>
+                    <hr />
+                </div>
+
+                <hr />
+                <div id='onea' style='padding: 10px;'>
+                    <label for='option-11' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6/24' id='option-11'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Java</label>
+                    <span id='result-11'></span>
+                </div>
+                <hr />
+                <div id='oneb' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Javascript</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='onec' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        C#</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='oned' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        PHP</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+            <div class="hiddenTwo">
+                <div>
+                    <h3>In Javscript, what data type is used to store an ordered list??</h3>
+                    <p>Question 2</p>
+                    <hr />
+                </div>
+
+                <hr />
+                <div id='twoa' style='padding: 10px;'>
+                    <label for='option-11' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6/24' id='option-11'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                    String </label>
+                    <span id='result-11'></span>
+                </div>
+                <hr />
+
+                <div id='twob' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Object</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='twoc' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Array</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='twod' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                    List </label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+            </div>
+            <div class="hiddenThree">
+                <div>
+                    <h3>Who first designed Javascript?</h3>
+                    <p>Question 3</p>
+                    <hr />
+                </div>
+
+                <hr />
+                <div id='threea' style='padding: 10px;'>
+                    <label for='option-11' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6/24' id='option-11'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Peter Baelish </label>
+                    <span id='result-11'></span>
+                </div>
+                <hr />
+
+                <div id='threeb' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        The Night King</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='threec' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Brenan Eich</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='threed' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Timothy Dillon </label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+            </div>
+                <div class="hiddenFour">
+                <div>
+                    <h3>Of the following, which programming language is NOT a high level language?</h3>
+                    <p>Question 4</p>
+                    <hr />
+                </div>
+
+                <hr />
+                <div id='foura' style='padding: 10px;'>
+                    <label for='option-11' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6/24' id='option-11'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Python </label>
+                    <span id='result-11'></span>
+                </div>
+                <hr />
+
+                <div id='fourb' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Assembly</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='fourc' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        Javascript</label>
+                    <span id='result-12'></span>
+                </div>
+                <hr />
+                <div id='fourd' style='padding: 10px;'>
+                    <label for='option-12' style=' padding: 5px; font-size: 2.5rem;'>
+                        <input type='radio' name='option' value='6' id='option-12'
+                            style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        P </label>
+                    <span id='result-12'></span>
+                </div>
+            </div>
+        </div>
+        <hr />
+</body>
+
+</html>
