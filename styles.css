@@ -1,4 +1,4 @@
-/* *, *::before, *::after {
+*, *::before, *::after {
   box-sizing: border-box;
   font-family: Gotham Rounded;
 }
@@ -18,7 +18,7 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--hue), 100%, 20%);
+  background-color: maroon;
 }
 
 body.correct {
@@ -48,7 +48,7 @@ body.wrong {
 .btn {
   --hue: var(--hue-neutral);
   border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color: hsl(var(--hue), 100%, 50%);
+  background-color: maroon;
   border-radius: 5px;
   padding: 5px 10px;
   color: white;
@@ -82,13 +82,16 @@ body.wrong {
 
 .hide {
   display: none;
-} */
+}
 
-/* .hidden, .hiddenTwo, .hiddenThree, .hiddenFour {
-    display:none
-} */
+#time-left {
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  /* let's change the color to red when there are five seconds remaining */
+}
 
-#onea, #oneb, #onec, #oned {
-    background-color:purple;
-    color: white;
+#quiz-complete {
+  color: white;
+  font-size: 20px;
 }
