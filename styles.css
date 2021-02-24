@@ -18,7 +18,7 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: maroon;
+  background-color: hsl(var(--hue), 100%, 20%);
 }
 
 body.correct {
@@ -48,7 +48,7 @@ body.wrong {
 .btn {
   --hue: var(--hue-neutral);
   border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color: maroon;
+  background-color: hsl(var(--hue), 100%, 50%);
   border-radius: 5px;
   padding: 5px 10px;
   color: white;
@@ -86,12 +86,9 @@ body.wrong {
 
 #time-left {
   padding: 10px;
-  margin: 10px;
+  margin: 0 auto;
+  text-align: center;
   color: white;
-  /* let's change the color to red when there are five seconds remaining */
-}
 
-#quiz-complete {
-  color: white;
-  font-size: 20px;
+  /* let's change the color to red when there are five seconds remaining */
 }
