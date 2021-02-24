@@ -88,6 +88,18 @@ function beginGame() {
     // let's figure out a way to insert the score function within each question function to make it more readable
 
 }
+// loop through questions
+// set question element text
+// set answerOne, two, three and four textContent current question answer
+// set data-correct attribute for each to .correct
+
+// addeventlistener to the answer-buttons container 'click'
+// if (event.target.matches('button')) {}
+  //  var isCorrect = event.target.dataset.correct
+  // socre(isCorrrect)
+
+// score(isCorrect) { // win() or lose() }
+
 // functions containing the questions
 function questionOne() {
 // display the question
