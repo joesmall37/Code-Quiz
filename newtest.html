@@ -8,7 +8,7 @@
 
 <body>
     <div class="grid">
-        <progress value="0" max="60" id="progressBar"></progress>
+        <!-- <progress value="0" max="60" id="progressBar"></progress> -->
         <h3><span id="game-over"></span></h3>
         <h3><span id="time-left">60</span></h3>
         <div id="quiz">
@@ -31,12 +31,30 @@
             <hr style="margin-top: 50px">
             <footer>
                 <p id="progress">Question x of y</p>
-                <!-- add span to show current score -->
+                <!-- <p> <span id="current-score"></span></p> -->
             </footer>
         </div>
     </div>
+    <div class="container" id="inputScore">
+        <h1 class="h1 mb-4">All done!</h1>
+        <p class="lead mb-4">Your final score: <span id="score"></span></p>
+        <p class="lead mb-4">Enter initials: <input type="text " id="initials"></p>
+        <button type="button" class="btn btn-primary btn-lg" id="submitInitials">Submit</button>
+    </div>
+
+    <div class="container" id="highScores">
+        <h1 class="h1 mb-4 font-weigth-bold">Highscores</h1>
+        <div class="container h4 mb-4" id="scores">
+        </div>
+        <button type="button" class="btn btn-primary btn-lg" id="goBack">Go Back</button>
+        <button type="button" class="btn btn-primary btn-lg" id="clearScores">Clear Scores</button>
+    </div>
 
 
+    <div>
+        <button id='restart'>Restart Quiz</button>
+
+    </div>
     <script src="newtest.js"></script>
 
 </body>

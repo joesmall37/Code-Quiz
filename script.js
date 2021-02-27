@@ -1,236 +1,204 @@
-var startButton = document.querySelector("#start-btn");
-var nextQuestionButton = document.querySelector("#next-btn");
-var questionContainer = document.querySelector("#question-container");
-var questionElement = document.querySelector("#question");
-var answerButtonElement = document.querySelector("#answer-buttons");
-var appTimer;
-var answerButtonOne = document.querySelector("#a-btn");
-var answerButtonTwo = document.querySelector("#b-btn");
-var answerButtonThree = document.querySelector("#c-btn");
-var answerButtonFour = document.querySelector("#d-btn");
-var timeLeftDisplay = document.querySelector("#time-left");
-var score = 0;
-var randomQuestion;
-var question;
-var questionIndex = 0;
-var gameOver = document.querySelector("#game-over");
-var answerChoice;
-var buttonA
-
-startButton.addEventListener("click", startQuiz);
-nextQuestionButton.addEventListener("click", nextQuestion);
-
+// quiz questions stored here
 var questions = [
-  {
-    id: 1,
-    question: "Of the following, which programming language was most popular in 2020 among software developers?",
-    answers: [
-      { text: 'Javascript', correct: true},
-      { text: 'Java', correct: false },
-      { text: 'C#', correct: false },
-      { text: 'Assembly', correct: false }
-    ]
-  },
-  {
-    id: 2,
-    question: "In Javscript, what data type is used to store an ordered list?",
-    answers: [
-      { text: 'String', correct: false },
-      { text: 'Object', correct: false },
-      { text: 'Array', correct: true },
-      { text: 'List', correct: false }
-    ]
-  },
-  {
-    id: 3,
-    question: "Who first designed Javascript?",
-    answers: [
-      { text: 'Peter Baelish', correct: false },
-      { text: 'Brendan Eich', correct: true },
-      { text: 'The Night King', correct: false },
-      { text: 'Arya Stark', correct: false }
-    ]
-  },
-  {
-    id: 4,
-    question: "Of the following, which programming language is NOT a high level language",
-    answers: [
-      { text: 'Java', correct: false },
-      { text: 'Javascript', correct: false },
-      { text: 'Python', correct: false },
-      { text: 'Assembly', correct: true }
-      // correct answer javascript
-    ]
-  }
-]
+		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["JavaScript", "Java","C#", "Assembly"], "Javascript"),
+		new Question("In Javscript, what data type is used to store an ordered list?", ["String", "Object", "Array", "List"], "Array"),
+		new Question("Who first designed Javascript??", ["Peter Baelish", "Brendan Eich","A Faceless Man", "The Waif"], "Brendan Eich"),
+		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Assembly"], "Assembly"),
+		new Question("Is software development fun?", ["A little", "Not really", "YES", "no"], "YES")
+];
 
-var highscore = localStorage.getItem("highscore");
 
-if(highscore !== null){
-    if (score > highscore) {
-        localStorage.setItem("highscore", score);
+
+// Welcome Page Elements =====================================
+const welcomeEl = document.querySelector("#welcome");
+const startQuizBtnEl = document.querySelector("#startQuiz");
+
+//Quiz Page Elements =========================================
+const quizEl = document.querySelector("#quiz");
+const questionEl = document.querySelector("#question");
+const answersEl = document.querySelector("#answers");
+
+//Input Score Page Elements ==================================
+const inputScoreEl = document.querySelector("#inputScore");
+const initialsEl = document.querySelector("#initials");
+const submitInitialsBtnEl = document.querySelector("#submitInitials");
+const userScoreEl = document.querySelector("#score");
+
+//View High Scores Page Elements =============================
+const highScoresEl = document.querySelector("#highScores");
+const scoresEl = document.querySelector("#scores");
+const goBackBtnEl = document.querySelector("#goBack");
+const clearScoresBtnEl = document.querySelector("#clearScores");
+
+//Universal vars =============================================
+const viewHScoresBtnEl = document.querySelector("#viewHScores");
+const timerEl = document.querySelector("#timer");
+var score = 0;
+var currentQ = 0;
+var highScores = [];
+var interval;
+var timeGiven = 75;
+var secondsElapsed = 0;
+
+//starts and updates timer
+function startTimer() {
+    timerEl.textContent = timeGiven;
+    interval = setInterval(function () {
+        secondsElapsed++;
+        timerEl.textContent = timeGiven - secondsElapsed;
+        if (secondsElapsed >= timeGiven) {
+            currentQ = questions.length;
+            nextQuestion();
+        }
+    }, 1000);
+}
+
+//stops timer
+function stopTimer() {
+    clearInterval(interval);
+}
+
+//Clears current question and calls for display of next question
+//Calls for input score display if last question
+function nextQuestion() {
+    currentQ++;
+    if (currentQ < questions.length) {
+        renderQuestion();
+    } else {
+        stopTimer();
+        if ((timeGiven - secondsElapsed) > 0)
+            score += (timeGiven - secondsElapsed);
+        userScoreEl.textContent = score;
+        hide(quizEl);
+        show(inputScoreEl);
+        timerEl.textContent = 0;
     }
 }
-else{
-    localStorage.setItem("highscore", score);
-}
-// functions
 
-function startQuiz() {
-  startButton.classList.add("hide");
-  questionContainer.classList.remove("hide");
-  nextQuestionButton.classList.remove("hide");
-  displayQuestion();
-  countDown();
-  downloadTimer();
-}
-
-function nextQuestion(currentQuestionIndex) {
-  displayQuestion(currentQuestionIndex);
-}
-// maybe we'll pass the question object in to the function as an arg and then loop through it for each question
-// do the same thing for answer choice
-//
-function next(questionIndex) {
-  questionIndex ++;
-  nextQuestion();
+//checks answer based on current question and updates the user score
+function checkAnswer(answer) {
+    if (questions[currentQ].answer == questions[currentQ].choices[answer.id]) {
+        score += 5;
+        displayMessage("Correct!");
+    }
+    else {
+        secondsElapsed += 10;
+        displayMessage("Wrong...");
+    }
 }
 
-function countDown(){
-    timeLeftDisplay.innerHTML = 60;
-
-    appTimer = setInterval(function() {
-    timeLeftDisplay.innerHTML -= 1;
-
-      if (timeLeftDisplay <= 0) {
-        clearInterval(appTimer);
-        }
-      }, 1500)
-    };
-
-
-function downloadTimer() {
-  setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-  }
-  document.getElementById("progressBar").value = 60 - timeleft;
-  timeleft -= 1;
-}, 1000);
-}
-
-
-
-
-function addScore() {
-  if (answer === correct) {
-    score += 25;
-  }else
-  // penalty for wrong answer
-  timeLeft -3;
-}
-
-function endQuiz() {
+//displays a message for 2 seconds
+function displayMessage(m) {
+    let messageHr = document.createElement("hr");
+    let messageEl = document.createElement("div");
+    messageEl.textContent = m;
+    document.querySelector(".jumbotron").appendChild(messageHr);
+    document.querySelector(".jumbotron").appendChild(messageEl);
+    setTimeout(function () {
+            messageHr.remove();
+            messageEl.remove();
+    }, 2000);
 
 }
 
-// function displayQuestion() {
-//   for (let index = 0; index < questions.length; index++) {
-//     questionElement.innerText = questions[index].question;
-//     chooseAnswer();
-//   }
-// }
-
-
-function displayQuestion(questionIndex, score){
-  if(questionIndex >= questions.length)
-  {
-    gameOver();
-
-  }
-  // check to see if the current question is the final question if so end the quiz
-  // if current question === quiestion.length
-  // else write the rest of the code
-else
-
-    // empty out the question section and empty the answer section
-    // then display the current question
-    // question currentindex[question]
-    // append new question to our question section
-
-
-    // change index to i
-  // function insertText() {
-  //   main.innerText = fakeData[counterIndex].main
-  //   second.innerText = fakeData[counterIndex].second
-  //   third.innerText = fakeData[counterIndex].thrid
-// }
-
-//   for (let index= 0; index < questions.length; index++) {
-    questionElement.innerText = questions[index].question;
-    answerButtonElement.innerText = questions[index].answers[index].text;
-    // make a variable equal to creating a button
-    // use the variable and empty it out
-    // then add css class to this variable
-    // then put the answer questionindex bracket i
-    // then append it to answer choices section
-    // make an onlclick and set it equal to answer checking functions ex. it will look like
-    // answerChoices.onclick = checkAnswer (
-      // adds event listener to the current button being clicked)
-//   }
-// }
-
-
-
-// answerbuttonelement
-
-
-function chooseAnswer(event) {
-  event.preventDefault();
-  event.stopPropagation();
-  answerChoice = event.target.getAttribute();
-
-  for (let index = 0; index < questions.length; index++) {
-    answerButtonElement.innerText = questions[index].answers[index].text;
-// maybe loop through these as well?
-  }
-  answerButtonElement.addEventListener("click", isAnswerCorrect)
-  questionIndex ++
-
+//hides element
+function hide(element) {
+    element.style.display = "none";
 }
 
-function isAnswerCorrect() {
-  // if answerSelected = correct
-  // add 20
-}
-function savedScore() {
-  // add score to this
-}
-function allScores() {
-  // add to localstorage
-}
-function addtoHighScore() {
-  // if saved scores > allScores then all present it as high score
+//displays element
+function show(element) {
+    element.style.display = "block";
 }
 
-function endGame(gameOver) {
-  gameOver.innerHTML = "Game Over! Your score is " + score;
+//reset local variables
+function reset() {
+    score = 0;
+    currentQ = 0;
+    secondsElapsed = 0;
+    timerEl.textContent = 0;
 }
 
-function restart() {
+//=================== Rendering ================================
 
-}
-// questions
-
-// maybe manually say if answer = this, then add it to the correct function
-
-
-
-function isCorrect() {
-
+//Renders current question
+function renderQuestion() {
+    questionEl.textContent = questions[currentQ].title;
+    for (i = 0; i < answersEl.children.length; i++) {
+        answersEl.children[i].children[0].textContent = `${(i + 1)}: ${questions[currentQ].choices[i]}`;
+    }
 }
 
-// questions.forEach(element => {
-//   console.log(element.question);
-//   console.log(element.answers)
-// });
+//Renders high scores stored in local storage
+function renderHighScores() {
+    // Clear content
+    scoresEl.innerHTML = "";
+    show(highScoresEl);
+    highScores = JSON.parse(localStorage.getItem("scores"));
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreItem = document.createElement("div");
+        scoreItem.className += "row mb-3 p-2";
+        console.log(scoreItem)
+        scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
+        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].userScore}`;
+        scoresEl.appendChild(scoreItem);
+    }
+}
+
+
+//=========================EVENTS================================
+
+//displays high scores
+viewHScoresBtnEl.addEventListener("click", function () {
+    hide(welcomeEl);
+    hide(quizEl);
+    hide(inputScoreEl);
+    renderHighScores();
+    stopTimer();
+    reset();
+});
+
+//starts quiz from  Welcome page
+startQuizBtnEl.addEventListener("click", function () {
+    hide(welcomeEl);
+    startTimer();
+    renderQuestion();
+    show(quizEl);
+});
+
+//Calls to check answer selected and calls to next question if button is clicked
+answersEl.addEventListener("click", function (e) {
+    if (e.target.matches("button")) {
+        checkAnswer(e.target);
+        nextQuestion();
+    }
+});
+
+//Creates a user score object to push to the local storage scores array calls to display high scores
+//calls to render high scores
+submitInitialsBtnEl.addEventListener("click", function () {
+    let initValue = initialsEl.value.trim();
+    if (initValue) {
+        let userScore = { username: initValue, userScore: score };
+        initialsEl.value = '';
+        highScores = JSON.parse(localStorage.getItem("scores")) || [];
+        highScores.push(userScore)
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        hide(inputScoreEl);
+        renderHighScores();
+        reset();
+    }
+});
+
+//Goes back to Welcome page from High scores
+goBackBtnEl.addEventListener("click", function () {
+    hide(highScoresEl);
+    show(welcomeEl);
+});
+
+//Clears saved scores from local storage
+clearScoresBtnEl.addEventListener("click", function () {
+    highScores = [];
+    localStorage.setItem("scores", JSON.stringify(highScores));
+    renderHighScores();
+});

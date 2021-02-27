@@ -1,3 +1,5 @@
+/* let's add a nav bar and keep colors consistent */
+
 body {
     background-color: white;
 }
@@ -79,4 +81,8 @@ body {
 
 .hide {
   display: none;
+}
+
+ #inputScore, #highScores {
+    display: none;
 }
