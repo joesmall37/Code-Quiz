@@ -4,8 +4,10 @@ var questionContainer = document.querySelector("#question-container");
 var questionElement = document.querySelector("#question");
 var answerButtonElement = document.querySelector("#answer-buttons");
 var appTimer;
-var answerButton = document.querySelector(".a-btn");
-// give unique ids
+var answerButtonOne = document.querySelector("#a-btn");
+var answerButtonTwo = document.querySelector("#b-btn");
+var answerButtonThree = document.querySelector("#c-btn");
+var answerButtonFour = document.querySelector("#d-btn");
 var timeLeftDisplay = document.querySelector("#time-left");
 var score = 0;
 var randomQuestion;
@@ -80,6 +82,7 @@ function startQuiz() {
   nextQuestionButton.classList.remove("hide");
   displayQuestion();
   countDown();
+  downloadTimer();
 }
 
 function nextQuestion(currentQuestionIndex) {
@@ -105,6 +108,16 @@ function countDown(){
       }, 1500)
     };
 
+
+function downloadTimer() {
+  setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+  }
+  document.getElementById("progressBar").value = 60 - timeleft;
+  timeleft -= 1;
+}, 1000);
+}
 
 
 

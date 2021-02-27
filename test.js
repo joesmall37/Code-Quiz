@@ -6,6 +6,7 @@ var answerButtonsElement = document.getElementById('answer-buttons')
 var timeLeftDisplay = document.querySelector("#time-left");
 var timeLeft = 60;
 var score = 0;
+
 var questions = [
   {
     question: "Of the following, which programming language was most popular in 2020 among software developers?",
