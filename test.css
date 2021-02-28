@@ -1,49 +1,88 @@
+/* let's add a nav bar and keep colors consistent */
 
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
 body {
-	line-height: 1;
+    background-color: white;
 }
-ol, ul {
-	list-style: none;
+
+.grid {
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid #cbcbcb;
+    text-align: center
+
 }
-blockquote, q {
-	quotes: none;
+
+.grid h1 {
+    font-family: "sans-serif";
+    background-color: #4B0082;
+    font-size: 30px;
+    text-align: center;
+    color: #ffffff;
+    padding: 2px 0px;
+
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+#score {
+    color: #4B0082;
+    text-align: center;
+    font-size: 30px;
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+
+.grid #question {
+    font-family: "monospace";
+    font-size: 18px;
+    color: #4B0082;
+}
+
+#buttons {
+    margin-top: 10px;
+}
+
+#btn0, #btn1, #btn2, #btn3 {
+    background-color: #4B0082;
+    width: 100x;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid #1D3C6A;
+    margin: 10px 40px 10px 0px;
+    padding: 10px 10px;
+}
+
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #4B0082
+}
+
+#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
+    outline: 0;
+}
+
+#progress {
+    color: #4B0082;
+    font-size: 18px;
+}
+
+#progressBar {
+    color:#4B0082;
+}
+
+
+.start-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: white;
+  background-color:#4B0082
+}
+
+.hide {
+  display: none;
+}
+
+ #inputScore, #highScores {
+    display: none;
 }

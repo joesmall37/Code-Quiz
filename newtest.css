@@ -5,8 +5,8 @@ body {
 }
 
 .grid {
-    width: 400px;
-    height: 500px;
+    width: 350px;
+    height: 350px;
     margin: 0 auto;
     background-color: #fff;
     padding: 10px 10px 10px 10px;
@@ -85,4 +85,26 @@ body {
 
  #inputScore, #highScores {
     display: none;
+    color: #4B0082
 }
+
+#restart, #submitInitials {
+    background-color: #4B0082;
+    width: 100x;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid #1D3C6A;
+    margin: 10px 40px 10px 0px;
+    padding: 10px 10px;
+}
+ #restart:hover, #submitInitials:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #4B0082
+}
+
+
+/* .bottom {
+    display: flex;
+    justify-content: space-around;
+} */
