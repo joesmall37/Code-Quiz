@@ -88,7 +88,7 @@ body {
     color: #4B0082
 }
 
-#restart, #submitInitials, #goBack, #clearScores{
+#restart, #submitInitials, #goBack, #clearScores {
     background-color: #4B0082;
     width: 100x;
     font-size: 18px;
@@ -119,4 +119,26 @@ body {
 }
 #time-left:hover {
     color: black;
+}
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: solid #4B0082;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 100;
+  text-decoration: none;
+  color: #4B0082;
+}
+
+a {
+    color: #4B0082;
+}
+h4 {
+    color: #4B0082
 }
