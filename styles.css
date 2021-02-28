@@ -135,9 +135,6 @@ header {
   color: #4B0082;
 }
 
-a {
+a, h4, #correct-incorrect {
     color: #4B0082;
-}
-h4 {
-    color: #4B0082
 }
