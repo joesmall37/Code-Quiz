@@ -22,14 +22,16 @@ var goBackBtnEl = document.querySelector("#goBack");
 var clearScoresBtnEl = document.querySelector("#clearScores");
 var answerResult = document.querySelector("#correct-incorrect");
 restartButton.addEventListener("click", reStart);
+
 // quiz questions stored here
 var questions = [
 		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["Python", "Java","C#", "Assembly"], "Javascript"),
 		new Question("In Javscript, what data type is used to store an ordered list?", ["String", "Object", "Array", "List"], "Array"),
 		new Question("Who first designed Javascript??", ["Peter Baelish", "Brendan Eich","A Faceless Man", "The Waif"], "Brendan Eich"),
-		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Dothraki"], "Dothraki"),
-		new Question("Which one of the following is a Data Type in Javascript?", ["Jon Snow", "Strings", "Karl Tanner", "Mance Rayder"], "String")
+		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Assembly"], "Assembly"),
+        new Question("Which one of the following is a Data Type in Javascript?", ["Jon Snow", "Strings", "Karl Tanner", "Mance Rayder"], "String")
 ];
+
 
 // user input score function
 submitInitialsBtnEl.addEventListener("click", function () {
@@ -46,12 +48,14 @@ submitInitialsBtnEl.addEventListener("click", function () {
     }
 });
 
+
+
 clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });
-//calls high score function
+//function to provide high scores
 function renderHighScores() {
     // Clear content
     scoresEl.innerHTML = "";
@@ -77,28 +81,6 @@ function startGame() {
 		questionContainerElement.classList.remove('hide')
 }
 // timer functions
-var downloadTimer = setInterval(function(){
-	if(timeleft <= 0){
-		clearInterval(downloadTimer);
-	}
-	document.getElementById("progressBar").value = 60 - timeleft;
-	timeleft -= 1;
-}, 1000);
-
-function countDown(){
-		var gameTime = 60;
-		timeLeftDisplay.textContent = gameTime;
-
-		appTimer = setInterval(function() {
-			if ((gameTime <= 0) || (questionIndex = questions.length -1)) {
-				clearInterval(appTimer);
-				// end game
-				return;
-			}
-			gameTime--;
-			timeLeftDisplay.textContent = gameTime;
-		}, 1000)
-};
 
 function Quiz(questions) {
 		this.score = 0;
@@ -112,20 +94,21 @@ Quiz.prototype.getQuestionIndex = function() {
 // add 25 points per right answer
 Quiz.prototype.guess = function(answer) {
 		if(this.getQuestionIndex().isCorrectAnswer(answer, currentScore)) {
-				this.score+= 25;
 				this.questionIndex++;
-				answerResult.textContent = "Correct!"
+                this.score+= 25;
+                answerResult.textContent = "Correct!"
 				return;
-				// currentScore.textContent = "Score: " + currentScore;
 		}
 		// penalize user by three seconds for wrong answer
+        this.questionIndex++
 		gameTime -= 3;
-		this.questionIndex++
-		answerResult.textContent = "Incorrect!";
+        answerResult.textContent = "Incorrect!";
 }
+
 Quiz.prototype.isEnded = function() {
 		return this.questionIndex === this.questions.length;
 }
+
 
 function Question(text, choices, answer) {
 		this.text = text;
@@ -136,7 +119,7 @@ function Question(text, choices, answer) {
 Question.prototype.isCorrectAnswer = function(choice) {
 		return this.answer === choice;
 }
-// once the quiz is finished  call the functions to show scores and prompt user to enter name for high score list - timer stops
+// once the quiz is finished  call the functions to show scores and prompt user to enter name for high score list
 
 function populate() {
 		if(quiz.isEnded()) {
@@ -161,6 +144,7 @@ function populate() {
 				showProgress();
 		}
 };
+
 function guess(id, guess) {
 		var button = document.getElementById(id);
 		button.onclick = function() {
@@ -168,13 +152,15 @@ function guess(id, guess) {
 				populate();
 		}
 };
+
 // function which shows how far into the quiz we are
+
 function showProgress() {
 		currentQuestionNumber = quiz.questionIndex + 1;
 		var element = document.getElementById("progress");
 		element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
 };
-
+// function to show scores
 function showScores() {
 		questionContainerElement.classList.add("hide")
 		var gameOverHTML = "<h1>Result</h1>";
@@ -182,7 +168,7 @@ function showScores() {
 		var element = document.getElementById("quiz");
 		element.innerHTML = gameOverHTML;
 };
-// second timer function
+// timer function
 function countDown(){
 		timeLeftDisplay.textContent = gameTime;
 
@@ -197,8 +183,8 @@ function countDown(){
 		}, 1000)
 };
 
-
 // function to take user name and score it to high scores
+
 function userScore(score) {
 		// save score to local storage in json
 		localStorage.setItem('Object', JSON.stringify(Object));
@@ -207,19 +193,34 @@ function userScore(score) {
 		var retrievedObject = localStorage.getItem('Object')
 
 }
+
 // create quiz
 var quiz = new Quiz(questions);
+
 // display quiz
 populate();
-// function to hide element
+
+
+	var scores = JSON.parse(localStorage.getItem('scores')) || [];
+	if ( scores.length) {
+		var highscores = scores.sort(function(a,b) { return a.score - b.score }).slice(0, 5);
+	}
+
+	scores.push({name: userName, score: score});
+	localStorage.setItem(scores);
+
+//function to hide element
 function hide(element) {
     element.style.display = "none";
 }
+
 //function to display element
 function show(element) {
     element.style.display = "block";
 }
-// function to clear scores 
+
+
+//Clears saved scores from local storage
 clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
@@ -229,6 +230,7 @@ clearScoresBtnEl.addEventListener("click", function () {
 function stopTimer() {
     clearInterval(appTimer);
 }
+
 // function to restart quiz
 function reStart() {
 
