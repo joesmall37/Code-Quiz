@@ -10,7 +10,7 @@ body {
     margin: 0 auto;
     background-color: #fff;
     padding: 10px 10px 10px 10px;
-    border: 2px solid #cbcbcb;
+    border: 2px solid #4B0082;
     text-align: center
 
 }
@@ -88,7 +88,7 @@ body {
     color: #4B0082
 }
 
-#restart, #submitInitials {
+#restart, #submitInitials, #goBack, #clearScores{
     background-color: #4B0082;
     width: 100x;
     font-size: 18px;
@@ -97,7 +97,7 @@ body {
     margin: 10px 40px 10px 0px;
     padding: 10px 10px;
 }
- #restart:hover, #submitInitials:hover {
+ #restart:hover, #submitInitials:hover, #goBack:hover, #clearScores:hover {
     cursor: pointer;
     background-color: white;
     color: #4B0082
@@ -108,3 +108,8 @@ body {
     display: flex;
     justify-content: space-around;
 } */
+
+.bott-sec {
+    display: flex;
+    justify-content: space-around;
+}
