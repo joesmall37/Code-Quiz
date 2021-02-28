@@ -263,7 +263,6 @@ function stopTimer() {
     clearInterval(appTimer);
 }
 
-restartButton.addEventListener("click", reStart)
 
 function reStart() {
 
