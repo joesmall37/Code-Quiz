@@ -20,7 +20,7 @@ var highScoresEl = document.querySelector("#highScores");
 var scoresEl = document.querySelector("#scores");
 var goBackBtnEl = document.querySelector("#goBack");
 var clearScoresBtnEl = document.querySelector("#clearScores");
-
+restartButton.addEventListener("click", reStart);
 // quiz questions stored here
 var questions = [
 		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["JavaScript", "Java","C#", "Assembly"], "Javascript"),
