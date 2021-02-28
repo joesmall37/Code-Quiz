@@ -1,5 +1,12 @@
 # Code-Quiz
 Code-Quiz
-
-
+- This application provides the user with a quiz to test their knowledge of Javascript
+- The quiz consists of five questions 
+- The user is given 60 seconds to complete the quiz
+- If the user gets a question right, 25 points are added to the final score
+- If the user gets a questions wrong, 0 points are added to the score, and an additional 3 seconds are deducted from the time.
+- Once the user completes the quiz, they are prompted to enter their name in their scores are saved.
+- Once the user's score is saved, they have the option to clear the scores if they choose.
+- After completing the quiz, the user has to option to press the restart button to retake the quiz.
+- Link to website
 - ![Image](https://user-images.githubusercontent.com/63420051/109405940-165e9880-7943-11eb-9f5d-1129db7394a5.png)
