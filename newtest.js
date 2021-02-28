@@ -21,46 +21,10 @@ var submitInitialsBtnEl = document.querySelector("#submitInitials");
 var userScoreEl = document.querySelector("#score");
 
 //View High Scores Page Elements =============================
-const highScoresEl = document.querySelector("#highScores");
-const scoresEl = document.querySelector("#scores");
-const goBackBtnEl = document.querySelector("#goBack");
-const clearScoresBtnEl = document.querySelector("#clearScores");
-
-// user input score function
-submitInitialsBtnEl.addEventListener("click", function () {
-    let initValue = initialsEl.value.trim();
-    if (initValue) {
-        let userScore = { username: initValue, userScore: score };
-        initialsEl.value = '';
-        highScores = JSON.parse(localStorage.getItem("scores")) || [];
-        highScores.push(userScore)
-        localStorage.setItem("scores", JSON.stringify(highScores));
-        hide(inputScoreEl);
-        renderHighScores();
-        reset();
-    }
-});
-
-clearScoresBtnEl.addEventListener("click", function () {
-    highScores = [];
-    localStorage.setItem("scores", JSON.stringify(highScores));
-    renderHighScores();
-});
-//Renders high scores stored in local storage
-function renderHighScores() {
-    // Clear content
-    scoresEl.innerHTML = "";
-    show(highScoresEl);
-    highScores = JSON.parse(localStorage.getItem("scores"));
-    for (let i = 0; i < highScores.length; i++) {
-        let scoreItem = document.createElement("div");
-        scoreItem.className += "row mb-3 p-2";
-        console.log(scoreItem)
-        scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
-        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].userScore}`;
-        scoresEl.appendChild(scoreItem);
-    }
-}
+var highScoresEl = document.querySelector("#highScores");
+var scoresEl = document.querySelector("#scores");
+var goBackBtnEl = document.querySelector("#goBack");
+var clearScoresBtnEl = document.querySelector("#clearScores");
 
 
 // quiz questions stored here
@@ -81,23 +45,13 @@ function startGame() {
 		questionElement.classList.remove('hide')
 		questionContainerElement.classList.remove('hide')
 }
-// timer functions
-
-var downloadTimer = setInterval(function(){
-	if(timeleft <= 0){
-		clearInterval(downloadTimer);
-	}
-	document.getElementById("progressBar").value = 60 - timeleft;
-	timeleft -= 1;
-}, 1000);
-
+// timer function
 
 function countDown(){
-		var gameTime = 60;
 		timeLeftDisplay.textContent = gameTime;
 
 		appTimer = setInterval(function() {
-			if ((gameTime <= 0) || (questionIndex = questions.length -1)) {
+			if (gameTime <= 0) {
 				clearInterval(appTimer);
 				// end game
 				return;
@@ -106,7 +60,6 @@ function countDown(){
 			timeLeftDisplay.textContent = gameTime;
 		}, 1000)
 };
-
 
 
 
@@ -175,6 +128,10 @@ function populate() {
 				showProgress();
 		}
 };
+// function to stop timer
+function stopTimer() {
+    clearInterval(appTimer);
+}
 
 function guess(id, guess) {
 		var button = document.getElementById(id);
@@ -200,31 +157,6 @@ function showScores() {
 		element.innerHTML = gameOverHTML;
 };
 
-// timer functions
-
-// var downloadTimer = setInterval(function(){
-// 	if(gameTime <= 0){
-// 		clearInterval(downloadTimer);
-// 	}
-// 	document.getElementById("progressBar").value = 60 - gameTime;
-// 	gameTime -= 1;
-// }, 1000);
-
-
-function countDown(){
-		timeLeftDisplay.textContent = gameTime;
-
-		appTimer = setInterval(function() {
-			if (gameTime <= 0) {
-				clearInterval(appTimer);
-				// end game
-				return;
-			}
-			gameTime--;
-			timeLeftDisplay.textContent = gameTime;
-		}, 1000)
-};
-
 // function to take user name and score it to high scores
 
 function userScore(score) {
@@ -235,31 +167,13 @@ function userScore(score) {
 		var retrievedObject = localStorage.getItem('Object')
 
 }
-
 // create quiz
 var quiz = new Quiz(questions);
 
 // display quiz
 populate();
 
-
-
-
-
-	var scores = JSON.parse(localStorage.getItem('scores')) || [];
-	if ( scores.length) {
-		var highscores = scores.sort(function(a,b) { return a.score - b.score }).slice(0, 5);
-		// show the scores on the screen
-	}
-
-
-	// save a score at the end of the game
-	scores.push({name: userName, score: score});
-	localStorage.setItem(scores);
-
-
-
-
+// function to hide hide
 function hide(element) {
     element.style.display = "none";
 }
@@ -268,6 +182,20 @@ function hide(element) {
 function show(element) {
     element.style.display = "block";
 }
+// user input score function
+submitInitialsBtnEl.addEventListener("click", function () {
+    let initValue = initialsEl.value.trim();
+    if (initValue) {
+        let userScore = { username: initValue, userScore: score };
+        initialsEl.value = '';
+        highScores = JSON.parse(localStorage.getItem("scores")) || [];
+        highScores.push(userScore)
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        hide(inputScoreEl);
+        renderHighScores();
+        reset();
+    }
+});
 
 
 //Clears saved scores from local storage
@@ -277,9 +205,24 @@ clearScoresBtnEl.addEventListener("click", function () {
     renderHighScores();
 });
 
-function stopTimer() {
-    clearInterval(appTimer);
+//function that produces the highscore
+function renderHighScores() {
+    // Clear content
+    scoresEl.innerHTML = "";
+    show(highScoresEl);
+    highScores = JSON.parse(localStorage.getItem("scores"));
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreItem = document.createElement("div");
+        scoreItem.className += "row mb-3 p-2";
+        console.log(scoreItem)
+        scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
+        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].userScore}`;
+        scoresEl.appendChild(scoreItem);
+    }
 }
+
+
+
 
 
 
