@@ -24,7 +24,7 @@ var answerResult = document.querySelector("#correct-incorrect");
 restartButton.addEventListener("click", reStart);
 // quiz questions stored here
 var questions = [
-		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["JavaScript", "Java","C#", "Assembly"], "Javascript"),
+		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["Python", "Java","C#", "Assembly"], "Javascript"),
 		new Question("In Javscript, what data type is used to store an ordered list?", ["String", "Object", "Array", "List"], "Array"),
 		new Question("Who first designed Javascript??", ["Peter Baelish", "Brendan Eich","A Faceless Man", "The Waif"], "Brendan Eich"),
 		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Dothraki"], "Dothraki"),
