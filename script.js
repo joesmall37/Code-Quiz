@@ -172,19 +172,6 @@ function showScores() {
 		element.innerHTML = gameOverHTML;
 };
 
-// function countDown(){
-// 		timeLeftDisplay.textContent = gameTime;
-
-// 		appTimer = setInterval(function() {
-// 			if (gameTime <= 0) {
-// 				clearInterval(appTimer);
-// 				// end game
-// 				return;
-// 			}
-// 			gameTime--;
-// 			timeLeftDisplay.textContent = gameTime;
-// 		}, 1000)
-// };
 // function to take user name and score it to high scores
 function userScore(score) {
 		// save score to local storage in json
@@ -198,27 +185,14 @@ function userScore(score) {
 var quiz = new Quiz(questions);
 // display quiz
 populate();
-
-
-// 	var scores = JSON.parse(localStorage.getItem('scores')) || [];
-// 	if ( scores.length) {
-// 		var highscores = scores.sort(function(a,b) { return a.score - b.score }).slice(0, 5);
-// 		// show the scores on the screen
-// 	}
-
-
-// 	// save a score at the end of the game
-// 	scores.push({name: userName, score: score});
-// 	localStorage.setItem(scores);
-
+// function to hide element
 function hide(element) {
     element.style.display = "none";
 }
-//displays element
+//function to display element
 function show(element) {
     element.style.display = "block";
 }
-
 // function to clear scores 
 clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
