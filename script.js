@@ -29,7 +29,7 @@ var questions = [
 		new Question("In Javscript, what data type is used to store an ordered list?", ["String", "Object", "Array", "List"], "Array"),
 		new Question("Who first designed Javascript??", ["Peter Baelish", "Brendan Eich","A Faceless Man", "The Waif"], "Brendan Eich"),
 		new Question("Of the following, which language is NOT a high level language?", ["Java", "Javascript", "Python", "Dothraki"], "Dothraki"),
-        new Question("Which one of the following is a Data Type in Javascript?", ["Jon Snow", "Strings", "Karl Tanner", "Mance Rayder"], "String")
+        new Question("Which one of the following is a Data Type in Javascript?", ["Jon Snow", "Strings", "Karl Tanner", "Mance Rayder"], "Strings")
 ];
 
 
