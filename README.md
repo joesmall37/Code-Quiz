@@ -8,5 +8,5 @@ Code-Quiz
 - Once the user completes the quiz, they are prompted to enter their name in their scores are saved.
 - Once the user's score is saved, they have the option to clear the scores if they choose.
 - After completing the quiz, the user has to option to press the restart button to retake the quiz.
-- [Link to application]()
+- [Link to application](https://joesmall37.github.io/Code-Quiz/)
 - ![Image](https://user-images.githubusercontent.com/63420051/109405940-165e9880-7943-11eb-9f5d-1129db7394a5.png)
