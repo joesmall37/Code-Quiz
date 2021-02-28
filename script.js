@@ -26,10 +26,9 @@ var questions = [
 		new Question("Of the following, which programming language was most popular in 2020 among software developers?", ["JavaScript", "Java","C#", "Assembly"], "Javascript"),
 		new Question("In Javscript, what data type is used to store an ordered list?", ["String", "Object", "Array", "List"], "Array"),
 		new Question("Who first designed Javascript??", ["Peter Baelish", "Brendan Eich","A Faceless Man", "The Waif"], "Brendan Eich"),
-		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Assembly"], "Assembly"),
-		new Question("Is software development fun?", ["A little", "Not really", "YES", "no"], "YES")
+		new Question("Of the following, which programming language is NOT a high level language?", ["Java", "Javascript", "Python", "Dothraki"], "Dothraki"),
+		new Question("Which one of the following is a Data Type in Javascript?", ["Jon Snow", "Strings", "Karl Tanner", "Mance Rayder"], "String")
 ];
-
 
 // user input score function
 submitInitialsBtnEl.addEventListener("click", function () {
@@ -46,14 +45,12 @@ submitInitialsBtnEl.addEventListener("click", function () {
     }
 });
 
-
-
 clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });
-//Renders high scores stored in local storage
+//calls high score function
 function renderHighScores() {
     // Clear content
     scoresEl.innerHTML = "";
@@ -78,17 +75,7 @@ function startGame() {
 		questionElement.classList.remove('hide')
 		questionContainerElement.classList.remove('hide')
 }
-// timer functions
-
-var downloadTimer = setInterval(function(){
-	if(timeleft <= 0){
-		clearInterval(downloadTimer);
-	}
-	document.getElementById("progressBar").value = 60 - timeleft;
-	timeleft -= 1;
-}, 1000);
-
-
+// timer function
 function countDown(){
 		var gameTime = 60;
 		timeLeftDisplay.textContent = gameTime;
@@ -103,9 +90,6 @@ function countDown(){
 			timeLeftDisplay.textContent = gameTime;
 		}, 1000)
 };
-
-
-
 
 function Quiz(questions) {
 		this.score = 0;
@@ -127,14 +111,10 @@ Quiz.prototype.guess = function(answer) {
 		// penalize user by three seconds for wrong answer
 		gameTime -= 3;
 		this.questionIndex++;
-
-		// currentScore.textContent = "Score: " + score;
 }
-
 Quiz.prototype.isEnded = function() {
 		return this.questionIndex === this.questions.length;
 }
-
 
 function Question(text, choices, answer) {
 		this.text = text;
@@ -145,13 +125,10 @@ function Question(text, choices, answer) {
 Question.prototype.isCorrectAnswer = function(choice) {
 		return this.answer === choice;
 }
-// once the quiz is finished  call the functions to show scores and prompt user to enter name for high score list
+// once the quiz is finished  call the functions to show scores and prompt user to enter name for high score list - timer stops
 
 function populate() {
 		if(quiz.isEnded()) {
-				// call function for high score list here
-				// function to clear timer
-				// add restart button
 				stopTimer();
 				showScores();
 				show(inputScoreEl);
@@ -173,7 +150,6 @@ function populate() {
 				showProgress();
 		}
 };
-
 function guess(id, guess) {
 		var button = document.getElementById(id);
 		button.onclick = function() {
@@ -181,9 +157,7 @@ function guess(id, guess) {
 				populate();
 		}
 };
-
 // function which shows how far into the quiz we are
-
 function showProgress() {
 		currentQuestionNumber = quiz.questionIndex + 1;
 		var element = document.getElementById("progress");
@@ -198,22 +172,20 @@ function showScores() {
 		element.innerHTML = gameOverHTML;
 };
 
-function countDown(){
-		timeLeftDisplay.textContent = gameTime;
+// function countDown(){
+// 		timeLeftDisplay.textContent = gameTime;
 
-		appTimer = setInterval(function() {
-			if (gameTime <= 0) {
-				clearInterval(appTimer);
-				// end game
-				return;
-			}
-			gameTime--;
-			timeLeftDisplay.textContent = gameTime;
-		}, 1000)
-};
-
+// 		appTimer = setInterval(function() {
+// 			if (gameTime <= 0) {
+// 				clearInterval(appTimer);
+// 				// end game
+// 				return;
+// 			}
+// 			gameTime--;
+// 			timeLeftDisplay.textContent = gameTime;
+// 		}, 1000)
+// };
 // function to take user name and score it to high scores
-
 function userScore(score) {
 		// save score to local storage in json
 		localStorage.setItem('Object', JSON.stringify(Object));
@@ -222,48 +194,42 @@ function userScore(score) {
 		var retrievedObject = localStorage.getItem('Object')
 
 }
-
 // create quiz
 var quiz = new Quiz(questions);
-
 // display quiz
 populate();
 
 
-	var scores = JSON.parse(localStorage.getItem('scores')) || [];
-	if ( scores.length) {
-		var highscores = scores.sort(function(a,b) { return a.score - b.score }).slice(0, 5);
-		// show the scores on the screen
-	}
+// 	var scores = JSON.parse(localStorage.getItem('scores')) || [];
+// 	if ( scores.length) {
+// 		var highscores = scores.sort(function(a,b) { return a.score - b.score }).slice(0, 5);
+// 		// show the scores on the screen
+// 	}
 
 
-	// save a score at the end of the game
-	scores.push({name: userName, score: score});
-	localStorage.setItem(scores);
-
+// 	// save a score at the end of the game
+// 	scores.push({name: userName, score: score});
+// 	localStorage.setItem(scores);
 
 function hide(element) {
     element.style.display = "none";
 }
-
 //displays element
 function show(element) {
     element.style.display = "block";
 }
 
-
-//Clears saved scores from local storage
+// function to clear scores 
 clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });
-
+// function to stop timer
 function stopTimer() {
     clearInterval(appTimer);
 }
-
-
+// function to restart quiz
 function reStart() {
 
 	location.reload();
