@@ -76,7 +76,15 @@ function startGame() {
 		questionElement.classList.remove('hide')
 		questionContainerElement.classList.remove('hide')
 }
-// timer function
+// timer functions
+var downloadTimer = setInterval(function(){
+	if(timeleft <= 0){
+		clearInterval(downloadTimer);
+	}
+	document.getElementById("progressBar").value = 60 - timeleft;
+	timeleft -= 1;
+}, 1000);
+
 function countDown(){
 		var gameTime = 60;
 		timeLeftDisplay.textContent = gameTime;
@@ -174,6 +182,21 @@ function showScores() {
 		var element = document.getElementById("quiz");
 		element.innerHTML = gameOverHTML;
 };
+// second timer function
+function countDown(){
+		timeLeftDisplay.textContent = gameTime;
+
+		appTimer = setInterval(function() {
+			if (gameTime <= 0) {
+				clearInterval(appTimer);
+				// end game
+				return;
+			}
+			gameTime--;
+			timeLeftDisplay.textContent = gameTime;
+		}, 1000)
+};
+
 
 // function to take user name and score it to high scores
 function userScore(score) {
