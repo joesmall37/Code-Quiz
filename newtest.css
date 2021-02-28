@@ -113,3 +113,10 @@ body {
     display: flex;
     justify-content: space-around;
 }
+
+#time-left {
+    color: #4B0082;
+}
+#time-left:hover {
+    color: black;
+}
