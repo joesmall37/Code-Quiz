@@ -20,6 +20,7 @@ var highScoresEl = document.querySelector("#highScores");
 var scoresEl = document.querySelector("#scores");
 var goBackBtnEl = document.querySelector("#goBack");
 var clearScoresBtnEl = document.querySelector("#clearScores");
+var answerResult = document.querySelector("#correct-incorrect");
 restartButton.addEventListener("click", reStart);
 // quiz questions stored here
 var questions = [
@@ -105,12 +106,14 @@ Quiz.prototype.guess = function(answer) {
 		if(this.getQuestionIndex().isCorrectAnswer(answer, currentScore)) {
 				this.score+= 25;
 				this.questionIndex++;
+				answerResult.textContent = "Correct!"
 				return;
 				// currentScore.textContent = "Score: " + currentScore;
 		}
 		// penalize user by three seconds for wrong answer
 		gameTime -= 3;
-		this.questionIndex++;
+		this.questionIndex++
+		answerResult.textContent = "Incorrect!";
 }
 Quiz.prototype.isEnded = function() {
 		return this.questionIndex === this.questions.length;
